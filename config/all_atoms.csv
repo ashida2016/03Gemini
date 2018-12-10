@@ -1,4 +1,4 @@
-﻿原子序数,元素符号,元素名称,读音,相对原子质量,英文名,周期（行）,族（列）,分类（I）
+﻿atomic_number,element_symbol,element_chinese_name,element_pinyin,atomic_mass,element_english_name,period_row,family_column,catalog_I
 1,H,氢,qīng,1.008,Hydrogen,1,I-A,非金属
 2,He,氦,hài,4.003,Helium,1,O,稀有气体
 3,Li,锂,lǐ,6.941,Lithium,2,I-A,金属
