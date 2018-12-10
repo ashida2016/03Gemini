@@ -7,6 +7,7 @@
 #       加深类的使用方法
 #       加深理解函数返回值的使用
 
+import os
 """
 import sys
 import io
@@ -44,11 +45,12 @@ class AtomsTable:
         # 将 CSV 文件内容读入内存
         # 设定 CSV 文件所在的路径 path （注意在 ATOM 和 CMD 环境下当前工作路径有所差异）
         # for ATOM
-        #csv_path = os.getcwd() + '\\' + 'config\\all_atoms.csv'
+        csv_path = os.getcwd() + '\\' + 'config\\all_atoms.csv'
         # for cmd Python
-        #csv_path = os.getcwd() + '\\' + '..\\config\\all_atoms.csv'
+        # csv_path = os.getcwd() + '\\' + '..\\config\\all_atoms.csv'
         # for PyCharm
-        csv_path = '..\\config\\all_atoms.csv'
+        # csv_path = '..\\config\\all_atoms.csv'
+        print(csv_path)
         df = pd.read_csv(csv_path, sep=',')
         # 将CSV内容转化为二维数组
         data = np.array(df.loc[:, :])
@@ -160,4 +162,3 @@ class AtomsTable:
                 found_atom.catalog  = atom.catalog
 
         return found_atom
-
