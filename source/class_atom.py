@@ -36,6 +36,7 @@ class Atom:
 
         self.set_name_en('Unknown')
         self.set_spell_zh('Unknown')
+        return
 
     #def __init__(self, number):
     #    self.seq = number
