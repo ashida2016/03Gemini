@@ -25,9 +25,6 @@ from class_atom import Atom
 
 class AtomsTable:
 
-    # 公共属性
-    table_ver = ""
-
     # 私有属性
     _atoms = []         # 所有元素对象的 list
     _count = 0          # 本表容纳的原子个数
@@ -35,6 +32,10 @@ class AtomsTable:
     _min_seq = 0      # 最小的原子序号
     _max_mass = 0.0
     _min_mass = 0.0
+
+    # 公共属性
+    table_ver = ""
+    atoms_iterator = iter(_atoms)
 
     # 创建 atoms 列表
     # 定义构造方法
@@ -45,12 +46,12 @@ class AtomsTable:
         # 将 CSV 文件内容读入内存
         # 设定 CSV 文件所在的路径 path （注意在 ATOM 和 CMD 环境下当前工作路径有所差异）
         # for ATOM
-        csv_path = os.getcwd() + '\\' + 'config\\all_atoms.csv'
+        # csv_path = os.getcwd() + '\\' + 'config\\all_atoms.csv'
         # for cmd Python
         # csv_path = os.getcwd() + '\\' + '..\\config\\all_atoms.csv'
         # for PyCharm
-        # csv_path = '..\\config\\all_atoms.csv'
-        print(csv_path)
+        csv_path = '..\\config\\all_atoms.csv'
+        # print(csv_path)
         df = pd.read_csv(csv_path, sep=',')
         # 将CSV内容转化为二维数组
         data = np.array(df.loc[:, :])

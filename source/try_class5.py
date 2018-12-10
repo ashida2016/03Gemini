@@ -34,11 +34,11 @@ m.show_myself()
 # 将 CSV 文件内容读入内存
 # 设定 CSV 文件所在的路径 path （注意在 ATOM 和 CMD 环境下当前工作路径有所差异）
 # for ATOM
-csv_path = os.getcwd() + '\\' + 'config\\all_matters.csv'
+# csv_path = os.getcwd() + '\\' + 'config\\all_matters.csv'
 # for cmd Python
 # csv_path = os.getcwd() + '\\' + '..\\config\\all_matters.csv'
 # for PyCharm
-# csv_path = '..\\config\\all_matters.csv'
+csv_path = '..\\config\\all_matters.csv'
 df = pd.read_csv(csv_path, sep=',')
 # 将CSV内容转化为二维数组
 data = np.array(df.loc[:, :])
@@ -46,5 +46,15 @@ data = np.array(df.loc[:, :])
 # 将CSV内容转化为二维数组
 data = np.array(df.loc[:, :])
 # 查看二维数组内容
-print(data)
-#print(len(data))
+#print(data)
+print(len(data))
+
+for row in data:
+    matter = Matter()
+    matter.name = row[0]
+    matter.alias = row[1]
+    matter.formula = row[2]
+    matter.catalog1 = row[3]
+    print(matter.formula)
+
+
