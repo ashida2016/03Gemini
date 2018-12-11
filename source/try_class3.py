@@ -29,7 +29,7 @@ x.show_myself()
 
 
 # 测试分解
-#x.formula = 'KAl(SO4)2•12H2O'
+x.formula = 'KAl(SO4)2•12H2O'
 #x.formula = 'CuSO4•5H2O'
 #x.formula = 'H2O'
 #x.formula ='CuSO4'
@@ -39,17 +39,19 @@ x.show_myself()
 #x.formula = 'Al2(SO4)3'
 tool = SplitToElements(x.formula)
 
-"""
+
 output = tool._split1()
+print("水合物  构成-", end='')
 print(output)
 
 output = tool._split2()
+print("根     构成-", end='')
 print(output)
 
 output = tool._split3()
+print("剩余部分构成-", end='')
 print(output)
 
-"""
 #output = tool._split_nomal(x.formula)
 #print(output)
 
