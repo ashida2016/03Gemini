@@ -1,28 +1,22 @@
 # -*- coding: UTF-8 -*-
 
-# Filename : try_class2.py
+# Filename : class_atoms_table.py
 # author by : （学员ID)
 
-# 目的： 学会建立类的列表
-#       加深类的使用方法
+# 目的： 加深学习类的使用方法（类定义中使用其他类）
+#       理解为外部调用类而创造的公用方法
 #       加深理解函数返回值的使用
+#       了解 iteraror 的用法
+# 配套练习：
+#       try_class2.py
 
-import os
-"""
-import sys
-import io
-"""
 import pandas as pd
 import numpy as np
 
 # 读取原子类
 from class_atom import Atom
 
-# 解决输出显示汉字乱码的问题
-# sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
-# print (sys.stdout.encoding)  # 确认当前的控制台显示字符的编码
-
-
+# 类定义
 class AtomsTable:
 
     # 私有属性
@@ -51,7 +45,6 @@ class AtomsTable:
         # csv_path = os.getcwd() + '\\' + '..\\config\\all_atoms.csv'
         # for PyCharm
         csv_path = '..\\config\\all_atoms.csv'
-        # print(csv_path)
         df = pd.read_csv(csv_path, sep=',')
         # 将CSV内容转化为二维数组
         data = np.array(df.loc[:, :])

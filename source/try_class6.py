@@ -31,3 +31,5 @@ for matter in  mt.matters_iterator:
     matter.split_to_elements()
     print("物质名称：(%s) - (%s) -(%s)" % (matter.name, matter.formula))
     matter.show_my_elements()
+
+

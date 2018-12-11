@@ -3,8 +3,9 @@
 # Filename : try_class1.py
 # author by : （学员ID)
 
-# 目的： 学会初步创建类，及使用类的方法
+# 目的： 学会初步创建类，将类实例化的方法
 #       学会从别的文件引用类
+#       学会调用实例化类的公有/私有属性方法
 
 from class_atom import Atom
 
