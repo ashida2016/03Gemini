@@ -9,9 +9,9 @@
 
 from class_atom import Atom
 
-
+"""
 # 属于哪个周期（行）
-# all_periods = (1, 2, 3, 4, 5, 6, 7)
+all_periods = (1, 2, 3, 4, 5, 6, 7)
 
 # 属于哪个族（列）
 all_families = ( 'I-A', 'II-A', \
@@ -23,7 +23,7 @@ all_families = ( 'I-A', 'II-A', \
 
 # 分类
 all_types = ( '金属', '非金属', '稀有气体')
-
+"""
 
 # ---  使用类开始 --
 
@@ -32,7 +32,7 @@ print("开始创建一个原子类：")
 x = Atom()
 x.show_myself()
 
-# 练习二：修改类的公有成员
+# 练习二：修改类的公有/私有成员
 print("\n对1个原子类赋值：")
 x.seq = 1           # 原子序号
 x.name = '氢'        # 元素中文符号

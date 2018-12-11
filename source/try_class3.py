@@ -1,100 +1,58 @@
 # -*- coding: UTF-8 -*-
 
-# Filename : try_class2.py
+# Filename : try_class3.py
 # author by : （学员ID)
 
-# 目的： 学会初步创建类，及使用类的方法
-#       学会读 CSV 文件并转化为二维数组
+# 目的： 复习学会创建类，将类实例化的方法
+#       复习学会从别的文件引用类
+#       复习学会调用实例化类的公有/私有属性方法
+
+from class_matter import Matter
+
+from class_tool_split_to_elements import SplitToElements
+
+# ---  使用类开始 --
+
+# 练习一： 创建一个类
+print("开始创建一个物质类：")
+x = Matter()
+
+# 练习二：修改类的公有/私有成员
+print("\n对1个物质类赋值：")
+# 定义类基本属性（可公开被外部直接调用）
+x.name = '氯化钠'  # 物质的中文名称
+x.alias = '食盐'  # 物质的别名
+x.formula = 'NaCl'  # 物质的化学分子式
+x.catalog1 = '常见的盐'  # 分类1
+x.comment = '经常吃的东东'  # 物质简介
+x.show_myself()
 
 
-import os
-import sys
-import io
+# 测试分解
+#x.formula = 'KAl(SO4)2•12H2O'
+#x.formula = 'CuSO4•5H2O'
+#x.formula = 'H2O'
+#x.formula ='CuSO4'
+#x.formula ='CH3COOH'
+#x.formula = 'Cu2(OH)2CO3'
+#x.formula = 'Cu12KAlCH3NH4HCO13Fe25O17'
+#x.formula = 'Al2(SO4)3'
+tool = SplitToElements(x.formula)
 
-import pandas as pd
-import numpy as np
+"""
+output = tool._split1()
+print(output)
 
-# 读取原子类
-from class_atom import Atom
+output = tool._split2()
+print(output)
 
-# 解决输出显示汉字乱码的问题
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
-# print (sys.stdout.encoding)  # 确认当前的控制台显示字符的编码
+output = tool._split3()
+print(output)
 
-# 设定 CSV 文件所在的路径 path （注意在 ATOM 和 CMD 环境下当前工作路径有所差异）
-# for ATOM
-filepath = os.getcwd() + '\\' + 'config\\all_atoms.csv'
-# for cmd Python
-#filepath = os.getcwd() + '\\' + '..\\config\\all_atoms.csv'
-# for PyCharm
-#filepath = '..\\config\\all_atoms.csv'
+"""
+#output = tool._split_nomal(x.formula)
+#print(output)
 
-# 将 CSV 文件内容读入内存
-df = pd.read_csv(filepath, sep=',')
-# 查看读入后内容
-#print(df)
-
-# 将CSV内容转化为二维数组
-data = np.array(df.loc[:, :])
-# 查看二维数组内容
-#print(data)
-print(len(data))
-
-# 所有元素对象的 list
-atoms = []
-
-# 顺序读取所有元素，并初始化每个实例化的类
-for row in data:
-    # 新生成一个空白的原子类
-    atom = Atom()
-    # 读取每一行的原子信息，并存入相应的类属性
-    atom.seq = row[0]
-    atom.symbol = row[1]
-    atom.name = row[2]
-    atom.set_spell_zh(row[3])
-    atom.mass = row[4]
-    atom.set_name_en(row[5])
-    atom.period = row[6]
-    atom.family = row[7]
-    atom.catalog = row[8]
-    # 将填好信息的原子类加入列表
-    atoms.append(atom)
-
-print(len(atoms))
-
-# 打印所有的类
-#for atom in atoms:
-#    print("(%d) - %s(%s)" % (atom.seq, atom.name, atom.symbol))
-    #print(atom)
-
-# 计算所有原子的平均原子量
-total_mass = 0.0
-
-for atom in atoms:
-    total_mass += atom.mass
-
-average_mass = total_mass / len(atoms)
-print("所有元素平均原子量是：%.3f" % (average_mass))
-
-# 计算所有特定原子的平均原子量
-total_mass1 = 0.0
-total_mass2 = 0.0
-total_mass3 = 0.0
-for atom in atoms:
-    if atom.catalog == '非金属':
-        total_mass1 += atom.mass
-    elif atom.catalog =='金属':
-        total_mass2 += atom.mass
-    else:
-        total_mass3 += atom.mass
-
-average_mass = total_mass1 / len(atoms)
-print("所有非金属元素平均原子量是：%.3f" % (average_mass))
-
-average_mass = total_mass2 / len(atoms)
-print("所有金属元素平均原子量是：%.3f" % (average_mass))
-
-average_mass = total_mass3 / len(atoms)
-print("所有稀有气体元素平均原子量是：%.3f" % (average_mass))
-
-print(df.describe())
+output = tool.get_elements()
+print("该物质中所有的原子及数量为：")
+print(output)

@@ -6,45 +6,38 @@
 # 目的： 学会在一个类中使用其他类
 #       加深类的使用方法
 #       加深理解函数返回值的使用
+# 配套练习：
+#       try_class3.py
 
-"""
-import sys
-import io
-"""
+
 import random
 
-# 读取原子类
-from class_atom import Atom
-from class_atoms_table import AtomsTable
-
-# 解决输出显示汉字乱码的问题
-# sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
-# print (sys.stdout.encoding)  # 确认当前的控制台显示字符的编码
+# 引用元素周期表类
+# from class_atoms_table import AtomsTable
 
 # 类定义
-
-
 class Matter:
 
     # 定义类基本属性（可公开被外部直接调用）
     name = 'Unkown'                 # 物质的中文名称
     alias = 'Unkown'                # 物质的别名
-    formula = 'H20'              # 物质的化学分子式
+    formula = 'Unkown'              # 物质的化学分子式
     catalog1 = 'Unkown'             # 分类1
     comment = 'Unkown'              # 物质简介
 
-    _mass = 0.0                     # 分子量
-    _price = 0.0                    # 当前价格
-    _elements = {}                  # 元素字典
-    
-    __atoms_table = AtomsTable()     # 内部计算用的 元素
+    _elements = {}                  # 元素字典  - 比较复杂，不求掌握
+    _mass = 0.0                     # 分子量    - 根据元素字典来计算
+
+    _price = 0.0                    # 当前价格 - 将来动态的获取，目前暂时用 random 替代
+
+    #__atoms_table = AtomsTable()     # 内部计算用的 元素
 
     def __init__(self):
-        __atoms_table = AtomsTable()
+        #__atoms_table = AtomsTable()
         #self.split_to_elements()
         return
 
-   # 定义类的自我展示
+    # 定义类的自我展示
     def show_myself(self):
         print("本物质的中文名称为(%s)[%s]， 化学分子式为(%s)，化学分子量为(%.2f)，价格为(%0.2f)元/吨，简介[%s]"  \
               % ( self.name, self.alias, self.formula, self.get_mass(), self.get_price(), self.comment )  )
@@ -59,14 +52,6 @@ class Matter:
             print("%s(%d)" % (key, value))
         return
 
-    # 依据本物质的元素构成计算分子量
-    def get_mass(self):
-        mass = 0
-        for key, value in self._elements.items():
-            atom = self.__atoms_table.get_atom_by_symbol(key)
-            mass += atom.mass * value
-        return mass
-
     # 获取本物质的当前价格
     def get_price(self):
         price = random.random() * 10000
@@ -77,6 +62,15 @@ class Matter:
         print("我的元素构成是：%s" % (self._elements))
         return
 
+    # 依据本物质的元素构成计算分子量
+    def get_mass(self):
+        mass = -1
+        #for key, value in self._elements.items():
+        #    atom = self.__atoms_table.get_atom_by_symbol(key)
+        #    mass += atom.mass * value
+        return mass
+
+    """
     # 依据本物质的分子式构筑本物质的
     def split_to_elements(self):
         atom_list = []  # 内部计算用的
@@ -124,3 +118,4 @@ class Matter:
             self._elements[cur_atom] = cur_volum
             print(self._elements)
         return
+    """
