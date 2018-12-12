@@ -10,6 +10,10 @@
 # 配套练习：
 #       try_class2.py
 
+import os
+import sys
+import io
+
 import pandas as pd
 import numpy as np
 
@@ -40,11 +44,11 @@ class AtomsTable:
         # 将 CSV 文件内容读入内存
         # 设定 CSV 文件所在的路径 path （注意在 ATOM 和 CMD 环境下当前工作路径有所差异）
         # for ATOM
-        # csv_path = os.getcwd() + '\\' + 'config\\all_atoms.csv'
+        csv_path = os.getcwd() + '\\' + 'config\\all_atoms.csv'
         # for cmd Python
         # csv_path = os.getcwd() + '\\' + '..\\config\\all_atoms.csv'
         # for PyCharm
-        csv_path = '..\\config\\all_atoms.csv'
+        # csv_path = '..\\config\\all_atoms.csv'
         df = pd.read_csv(csv_path, sep=',')
         # 将CSV内容转化为二维数组
         data = np.array(df.loc[:, :])

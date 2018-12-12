@@ -6,6 +6,8 @@
 # 目的： 学会建立类的列表
 #       加深类的使用方法
 #       加深理解函数返回值的使用
+# 配套练习：
+#       try_class4.py
 
 import os
 """
@@ -39,11 +41,11 @@ class MattersTable:
         # 将 CSV 文件内容读入内存
         # 设定 CSV 文件所在的路径 path （注意在 ATOM 和 CMD 环境下当前工作路径有所差异）
         # for ATOM
-        # csv_path = os.getcwd() + '\\' + 'config\\all_matters.csv'
+        csv_path = os.getcwd() + '\\' + 'config\\all_matters.csv'
         # for cmd Python
         # csv_path = os.getcwd() + '\\' + '..\\config\\all_matters.csv'
         # for PyCharm
-        csv_path = '..\\config\\all_matters.csv'
+        # csv_path = '..\\config\\all_matters.csv'
         # print(csv_path)
         df = pd.read_csv(csv_path, sep=',')
         # 将CSV内容转化为二维数组
@@ -58,6 +60,14 @@ class MattersTable:
             matter.alias = row[1]
             matter.formula = row[2]
             matter.catalog1 = (row[3])
+            matter.comment = row[4]
+            # 自动拆分物质的分子式
+            f = matter.get_elements()
+            # 自动计算物质的分子量
+            n = matter.get_mass()
+            # 自动获取物质的价格
+            p = matter.get_price()
+
             # 将填好信息的原子类加入列表
             self._matters.append(matter)
 

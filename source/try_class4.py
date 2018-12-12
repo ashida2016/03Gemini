@@ -18,17 +18,21 @@ import numpy as np
 # 引用物质类
 from class_matter import Matter
 
+# 引用物质表类
+from class_matters_table import MattersTable
+
+
 # 解决输出显示汉字乱码的问题
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 # print (sys.stdout.encoding)  # 确认当前的控制台显示字符的编码
 
 # 打开一个文件，顺序读每一行
 # for ATOM
-# csv_path = os.getcwd() + '\\' + 'config\\all_atoms.csv'
+csv_path = os.getcwd() + '\\' + 'config\\all_matters.csv'
 # for cmd Python
-# csv_path = os.getcwd() + '\\' + '..\\config\\all_atoms.csv'
+# csv_path = os.getcwd() + '\\' + '..\\config\\all_matters.csv'
 # for PyCharm
-csv_path = '..\\config\\all_matters.csv'
+# csv_path = '..\\config\\all_matters.csv'
 
 # 练习一
 # 将 CSV 文件内容读入内存
@@ -96,3 +100,8 @@ for row in data:
 print("\n总共转化了 (%d) 个物质类：" % (len(matters)))
 for matter in matters:
     matter.show_myself()
+
+# 练习五， 直接使用 matter_table 完成上述操作，体验类的便利性
+mt = MattersTable()
+for m in mt.matters_iterator:
+    print(m.name)
