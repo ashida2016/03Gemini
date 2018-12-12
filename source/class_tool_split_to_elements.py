@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-# Filename : class_tool_split_toself._elements.py
+# Filename : class_tool_split_to_elements._elements.py
 # author by : （Teacher Mike.Shi)
 
 # 要点：
@@ -11,9 +11,11 @@ class SplitToElements:
     _f = ''                 # 内部使用的分子式
     _elements = {}          #
 
+    # 初始化
     def __init__(self, formula):
 
         self._f = formula
+        self._elements = {}
 
         # 将分子式第一次拆解： 分离水合物表达式
         e1 = self._split1()
@@ -47,6 +49,11 @@ class SplitToElements:
                 self._elements.update({key: value})
 
         return
+
+    # 获取分拆结果
+    def get_elements(self):
+        return self._elements
+
 
     # 将分子式第一次拆解： 分离水合物表达式
     def _split1(self):
@@ -151,22 +158,23 @@ class SplitToElements:
             if p1 > 0:
                 remainder2 = remainder1[:p1]
 
-                # 判断 ) 右边是否有2个数字 - ) 前提条件： ）右边至少有一个数字
-                n = len(remainder1)
-                if p2 < len(remainder1) - 2:
-                    c2 = remainder1[p2+2]
-                    if c2.isdigit():
-                        p2 += 3
-                    else:
-                        p2 += 2
+            # 判断 ) 右边是否有2个数字 - ) 前提条件： ）右边至少有一个数字
+            n = len(remainder1)
+            if p2 < len(remainder1) - 2:
+                c2 = remainder1[p2+2]
+                if c2.isdigit():
+                    p2 += 3
                 else:
-                    p2 += 1
+                    p2 += 2
+            else:
+                p2 += 1
 
-                # 取出右边的表达式
-                if p2 == len(remainder1) - 1:
-                    remainder3 = ''
-                else:
-                    remainder3 = remainder1[p2:]
+            # 取出右边的表达式
+            if p2 == len(remainder1) - 1:
+                remainder3 = ''
+            else:
+                remainder3 = remainder1[p2:]
+
             # 若找到根表达式，则使用去除根后的两部分
             remainder = remainder2 + remainder3
         else:
