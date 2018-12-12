@@ -47,10 +47,8 @@ class Matter:
         return
 
     # 显示构成本物质的所有原子及数量
-    def show_myelements(self):
-        for key,value in self._elements.items():
-            print("%s(%d)" % (key, value))
-        return
+    def get_elements(self):
+        return self._elements
 
     # 获取本物质的当前价格
     def get_price(self):
